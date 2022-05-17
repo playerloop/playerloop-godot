@@ -33,10 +33,10 @@ Then create a `.env` file in your root folder if you don't have it yet, and add 
 SECRET=paste_your_secret_here
 ```
 
-So for example if your secret is `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbklkIjo5NTg5NTM1NX0.olTAYRE8oZj4huZfjWS3VXfEZJuxzDVLEtyZ2w90998` then the `.env` file should be
+So for example if your secret is `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9` then the `.env` file should be
 
 ```
-SECRET=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbklkIjo5NTg5NTM1NX0.olTAYRE8oZj4huZfjWS3VXfEZJuxzDVLEtyZ2w90998
+SECRET=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
 Now you can call the `Playerloop` singleton from anywhere in your code. To upload a bug report, you can simply call:
