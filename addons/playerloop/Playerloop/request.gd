@@ -13,8 +13,7 @@ var _secret : String
 var _handler : HTTPRequest = null
 var responseReportId : String = ""
 var requestedAttachments : PoolStringArray = []
-var apiURL = "http://localhost:1234"
-#var res = String
+var apiURL = "https://api.playerloop.io"
 
 
 func post(bugReportText : String, attachments : PoolStringArray = []) -> void:
@@ -68,7 +67,7 @@ func upload_attachment(reportId : String, filePath : String) -> void:
 	
 	var http = HTTPClient.new()
 
-	http.connect_to_host("http://localhost", 1234, false)
+	http.connect_to_host("https://api.playerloop.io", 443, false)
 
 	while http.get_status() == HTTPClient.STATUS_CONNECTING or http.get_status() == HTTPClient.STATUS_RESOLVING:
 		http.poll()

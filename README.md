@@ -54,10 +54,6 @@ Playerloop.request.post("I found a bug in your first level!", ["user://savegamef
 
 You can find an example Godot project with a simple implementation of this library here: COMING SOON
 
-## UI Library
-
-Coming soon
-
 ## Full reference
 
 Coming soon
