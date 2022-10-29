@@ -3,7 +3,6 @@
 export/
 scn/
 project.godot
-icon.png
 *.import
 
 # Godot-specific ignores
@@ -14,9 +13,14 @@ default_env.tres
 testScene.tscn
 testSceneDemo.gd
 
+# Godot 4+ specific ignores
+.godot/
+
 # Imported translations (automatically generated from CSV files)
 *.translation
 
 # Mono-specific ignores
 .mono/
 data_*/
+mono_crash.*.json
+mono_crash.*.json
