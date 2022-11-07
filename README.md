@@ -33,9 +33,16 @@ Now you need to set up your secret. Go to [playerloop.io/settings](https://playe
 Now go back inside Godot and navigate to the file `res://addons/playerloop/Playerloop/playerloop.gd`
 
 And add the secret to line 13. So if your secret is `ghterereeesdfsdfsd`, line 13 goes from:
-`"playerloopSecret": ""`
+
+```python
+"playerloopSecret": ""
+```
 to
-`"playerloopSecret": "ghterereeesdfsdfsd"`
+
+```python
+"playerloopSecret": "ghterereeesdfsdfsd"
+```
+
 Save the file and you are ready to go!
 
 Now you can call the `Playerloop` singleton from anywhere in your code. To upload a bug report, you can simply call:
