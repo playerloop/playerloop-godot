@@ -21,18 +21,20 @@ func _ready() -> void:
 func load_config() -> void:
 	if config.playerloopSecret != "":
 		pass
-	else:   
-		var env = ConfigFile.new()
-		var err = env.load("res://addons/playerloop/.env")
-		if err == OK:
-			for key in config.keys(): 
-				var value : String = env.get_value(ENVIRONMENT_VARIABLES, key, "")
-				if value == "":
-					printerr("%s has not a valid value." % key)
-				else:
-					config[key] = value
-		else:
-			printerr("Unable to read .env file at path 'res://.env'")
+	else:
+		printerr("Add your secret in the res://addons/Playerloop/playerloop.gd file, line 13")
+	# else:   
+	# 	var env = ConfigFile.new()
+	# 	var err = env.load("res://addons/playerloop/.env")
+	# 	if err == OK:
+	# 		for key in config.keys(): 
+	# 			var value : String = env.get_value(ENVIRONMENT_VARIABLES, key, "")
+	# 			if value == "":
+	# 				printerr("%s has not a valid value." % key)
+	# 			else:
+	# 				config[key] = value
+	# 	else:
+	# 		printerr("Unable to read .env file at path 'res://.env'")
 
 func load_nodes() -> void:
 	request = PlayerloopRequest.new()

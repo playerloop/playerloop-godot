@@ -17,27 +17,26 @@ We are currently in free closed Beta! You can join us here on Discord: [![Discor
 
 If you did not do that already, head over [playerloop.io](https://playerloop.io) and sign up for an account.
 
-To install the Godot plugin, you can either:
-a) Clone this repository and move the addons folder to the root of your project.
+You can install this Godot plugin normally, either:
+a) Clone this repository
 or
-b) Install it ~~from the AssetLib inside Godot Engine Editor~~ (Coming soon, we did not publish it yet)
+b) Download it from the [Godot Asset Library](https://godotengine.org/asset-library/asset/1529)
+
+Now unzip what you downloaded. It will contain a `addons/` folder. Paste that folder into your Godot root project (like you would for any Godot pluging).
 
 After installing the Library, don't forget to activate it in your Project settings. Click on `Project` on the top main menu, then choose `Project Settings` and then switch to `Plugins`. Enable the library as follows:
 
 ![Activate Library](imgs/library_activate.png)
 
 Now you need to set up your secret. Go to [playerloop.io/settings](https://playerloop.io/settings) and copy your secret to the clipboard.
-Then create a `.env` file in your root folder if you don't have it yet, and add the following line inside of it:
 
-```
-SECRET=paste_your_secret_here
-```
+Now go back inside Godot and navigate to the file `res://addons/playerloop/Playerloop/playerloop.gd`
 
-So for example if your secret is `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9` then the `.env` file should be
-
-```
-SECRET=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
-```
+And add the secret to line 13. So if your secret is `ghterereeesdfsdfsd`, line 13 goes from:
+`"playerloopSecret": ""`
+to
+`"playerloopSecret": "ghterereeesdfsdfsd"`
+Save the file and you are ready to go!
 
 Now you can call the `Playerloop` singleton from anywhere in your code. To upload a bug report, you can simply call:
 ```python
