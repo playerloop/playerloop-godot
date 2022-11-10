@@ -7,6 +7,8 @@ const ENVIRONMENT_VARIABLES : String = "playerloop/config"
 var request : PlayerloopRequest
 
 
+func open_privacy_policy():
+	OS.shell_open("https://playerloop.io/privacy-policy")
 var debug: bool = false
 
 var config : Dictionary = {
