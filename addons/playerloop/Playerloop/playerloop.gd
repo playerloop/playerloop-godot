@@ -16,6 +16,8 @@ var config : Dictionary = {
 func _ready() -> void:
 	load_config()
 	load_nodes()
+func open_privacy_policy():
+	OS.shell_open("https://playerloop.io/privacy-policy")
 
 # Load all config settings from ProjectSettings
 func load_config() -> void:
