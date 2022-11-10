@@ -6,9 +6,6 @@ const ENVIRONMENT_VARIABLES : String = "playerloop/config"
 #var report : PlayerloopReport 
 var request : PlayerloopRequest
 
-
-func open_privacy_policy():
-	OS.shell_open("https://playerloop.io/privacy-policy")
 var debug: bool = false
 
 var config : Dictionary = {
@@ -42,3 +39,6 @@ func load_nodes() -> void:
 	request = PlayerloopRequest.new()
 	request._secret = config["playerloopSecret"]
 	add_child(request)
+
+func open_privacy_policy():
+	OS.shell_open("https://playerloop.io/privacy-policy")
