@@ -22,6 +22,7 @@ func load_config() -> void:
 		pass
 	else:
 		printerr("Add your secret in the res://addons/Playerloop/playerloop.gd file, line 13")
+		return
 	# else:   
 	# 	var env = ConfigFile.new()
 	# 	var err = env.load("res://addons/playerloop/.env")
