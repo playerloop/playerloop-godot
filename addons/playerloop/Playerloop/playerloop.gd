@@ -15,7 +15,7 @@ func load_config() -> void:
 		load_nodes()
 		return
 	printerr("Add your secret in the res://addons/Playerloop/playerloop.gd file, line 13")
-
+  
 func load_nodes() -> void:
 	request = PlayerloopRequest.new()
 	request._secret = config["playerloopSecret"]
@@ -24,3 +24,7 @@ func load_nodes() -> void:
 func config(secret:String):
 	config["playerloopSecret"] = secret
 	load_nodes()
+
+func open_privacy_policy():
+	OS.shell_open("https://playerloop.io/privacy-policy")
+

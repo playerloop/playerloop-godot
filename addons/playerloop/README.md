@@ -33,9 +33,16 @@ Now you need to set up your secret. Go to [playerloop.io/settings](https://playe
 Now go back inside Godot and navigate to the file `res://addons/playerloop/Playerloop/playerloop.gd`
 
 And add the secret to line 13. So if your secret is `ghterereeesdfsdfsd`, line 13 goes from:
-`"playerloopSecret": ""`
+
+```python
+"playerloopSecret": ""
+```
 to
-`"playerloopSecret": "ghterereeesdfsdfsd"`
+
+```python
+"playerloopSecret": "ghterereeesdfsdfsd"
+```
+
 Save the file and you are ready to go!
 
 Now you can call the `Playerloop` singleton from anywhere in your code. To upload a bug report, you can simply call:
@@ -48,6 +55,20 @@ To attach one or more savegame files together with the report, you can add an ar
 ```python
 Playerloop.request.post("I found a bug in your first level!", ["user://savegamefile.gd"])
 ```
+
+## Opening the Privacy Policy page
+
+When integrating the Bug Report interface into your game, don't forget to ask your users to accept the Playerloop Privacy Policy. It has to be a clear checkmark that is not active by default. The description of the checkmark has to link to our Privacy Policy, and to do so, you can use this function of the SDK:
+
+```python
+Playerloop.open_privacy_policy():
+```
+
+Calling this function will open the user's browser and display the Playerloop Privacy page, so it's handy to have it trigger if the user clicks on the linked words. Something like:
+
+✅ By checking this checkmark, I accept the [Playerloop privacy policy](https://playerloop.io/privacy-policy)
+
+Where clicking on the underlined words will trigger the function above.
 
 ## Example project
 

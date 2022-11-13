@@ -34,11 +34,13 @@ func post(bugReportText : String, attachments : PoolStringArray = []) -> void:
 	var error = http_request.request(apiURL+"/reports", _headers, false, HTTPClient.METHOD_POST, JSON.print(body))
 	if error != OK:
 		push_error("An error occurred in the HTTP request.")
+		return
 
 # Called when the HTTP request is completed.
 func _http_request_completed(result, response_code, headers, body):
 	if response_code > 300:
 		push_error("An error occurred in the HTTP request.")
+		return
 	var response = parse_json(body.get_string_from_utf8())
 	responseReportId = response.data.id
 	if requestedAttachments.size() > 0:
@@ -138,6 +140,7 @@ func upload_attachment(reportId : String, filePath : String) -> void:
 func _upload_completed(result, response_code, headers, body):
 	if response_code > 300:
 		push_error("An error occurred in the HTTP request.")
+		return
 	var response = parse_json(body.get_string_from_utf8())
 	# Will print the user agent string used by the HTTPRequest node (as recognized by httpbin.org).
 	self._reportSentSuccessfully()
