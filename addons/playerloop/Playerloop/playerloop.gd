@@ -1,45 +1,29 @@
 class_name PlayerloopSDK
 extends Node
 
-const ENVIRONMENT_VARIABLES : String = "playerloop/config"
-
-#var report : PlayerloopReport 
 var request : PlayerloopRequest
 
 var debug: bool = false
 
-var config : Dictionary = {
-	"playerloopSecret": ""
-}
+var secret:String = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbklkIjoxNTg1MTM1Nn0.jmclNAJu7nzlYrnwMxRfDauv01ak4k_gdOwXPJu49XI"
 
 func _ready() -> void:
 	load_config()
 	load_nodes()
 
-# Load all config settings from ProjectSettings
+# Load all config settings from config.gd
 func load_config() -> void:
-	if config.playerloopSecret != "":
-		pass
-	else:
-		printerr("Add your secret in the res://addons/Playerloop/playerloop.gd file, line 13")
+	# Checks if config secret is "" or null
+	if secret == "" or secret == null:
+		printerr("You'll need to add your Playerloop.io project secret into res://addons/playerloop/Playerloop/config.gd (line 3)")
 		return
-	# else:   
-	# 	var env = ConfigFile.new()
-	# 	var err = env.load("res://addons/playerloop/.env")
-	# 	if err == OK:
-	# 		for key in config.keys(): 
-	# 			var value : String = env.get_value(ENVIRONMENT_VARIABLES, key, "")
-	# 			if value == "":
-	# 				printerr("%s has not a valid value." % key)
-	# 			else:
-	# 				config[key] = value
-	# 	else:
-	# 		printerr("Unable to read .env file at path 'res://.env'")
 
+# Adds PlayerloopRequest to script, used for making requests to playerloop.io
 func load_nodes() -> void:
 	request = PlayerloopRequest.new()
-	request._secret = config["playerloopSecret"]
+	request._secret = secret
 	add_child(request)
 
+# Opens the playerloop.io privacy policy
 func open_privacy_policy():
 	OS.shell_open("https://playerloop.io/privacy-policy")
