@@ -41,7 +41,7 @@ func post(bug_report_text : String, attachments : PoolStringArray = []) -> void:
 		}
 	}
 	# Makes the API request to playerloop.io and saves the output into "error"
-	var error = http_request.request(api_url+"/reports", _headers, false, HTTPClient.METHOD_POST, JSON.print(body))
+	var error = http_request.request(api_url + "/reports", _headers, false, HTTPClient.METHOD_POST, JSON.print(body))
 	# Checks if the request was successfully sent
 	if error != OK:
 		push_error("Failed creating bugreport: A HTTP error was encountered")
@@ -52,16 +52,25 @@ func _http_request_completed(result, response_code, headers, body):
 	# Check against API error
 	if response_code > 300:
 		push_error("Failed creating bugreport: The API responded with a response code of " + str(response_code))
-		return
-	# Parse HTTP body as JSON
-	var response = JSON.parse(body.get_string_from_utf8()).result
-	# Saves the report ID
-	response_report_id = response["data"]["id"]
-	# Reupload the attachments if failed
+	# Upload attachments
 	if requested_attachments.size() > 0:
-		self.upload_attachment(response_report_id, requested_attachments[0])
+		# Parse HTTP body as JSON
+		var response = JSON.parse(body.get_string_from_utf8())
+		if response.error != OK:
+			push_error("Failed uploading attachment: HTTP body could not be parsed as JSON")
+			return
+		# Saves the report ID
+		if response.result["data"] == null:
+			push_error("Failed uploading attachment: data is null")
+			return
+		if response.result["data"]["id"] == null or response.result["data"]["id"] == "":
+			push_error("Failed uploading attachment: Report ID is null")
+			return
+		response_report_id = response.result["data"]["id"]
+		for attachment in requested_attachments:
+			upload_attachment(response_report_id, attachment)
 	else:
-		self._report_sent_successfully()
+		_report_sent_successfully()
 
 # Uploads attachments to a report
 func upload_attachment(report_id : String, file_path : String) -> void:
@@ -153,7 +162,7 @@ func upload_attachment(report_id : String, file_path : String) -> void:
 						if _content_length != 0:
 							pass
 						OS.delay_msec(10)
-						self._upload_completed(0, _response_code, _response_headers, _response_data)
+						_upload_completed(0, _response_code, _response_headers, _response_data)
 				else:
 					OS.delay_msec(10)
 	
@@ -165,7 +174,7 @@ func _upload_completed(result, response_code, headers, body):
 		push_error("Failed creating bugreport: The API responded with a response code of " + str(response_code))
 		return
 	# Prints the user agent string used by the HTTPRequest node (as recognized by httpbin.org).
-	self._report_sent_successfully()
+	_report_sent_successfully()
 
 # Marks the API request as successful
 func _report_sent_successfully():
